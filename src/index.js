@@ -5,7 +5,7 @@
   @param{number} looserRating a rating of the looser
  */
 
-let calcRate = (winnerRating, looserRating) => {
+const calcRate = (winnerRating, looserRating) => {
   let playersDifference = winnerRating - looserRating;
   let biggerRateWinCalc = () => {
     if (playersDifference >= 0 && playersDifference <= 2) {
@@ -23,13 +23,8 @@ let calcRate = (winnerRating, looserRating) => {
     return winnerRating;
   };
 
-  if (
-    isNaN(winnerRating) ||
-    isNaN(looserRating) ||
-    winnerRating < 0 ||
-    looserRating < 0
-  ) {
-    return;
+  if (isNaN(playersDifference) || winnerRating < 0 || looserRating < 0) {
+    return NaN;
   }
   if (winnerRating === 0) {
     return (winnerRating = looserRating);
@@ -48,4 +43,8 @@ let calcRate = (winnerRating, looserRating) => {
   return winnerRating;
 };
 
-console.log(calcRate(22, 22));
+const theRateMessage = (x)=>{
+return `The winner rating is ${x}`
+}
+const result = calcRate(22,22)
+console.log(theRateMessage(result))
