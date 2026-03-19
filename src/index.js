@@ -6,6 +6,11 @@
  */
 
 const calcRate = (winnerRating, looserRating) => {
+const check1 = typeOfCheck(winnerRating)
+const check2 =typeOfCheck(looserRating)
+if(Number.isNaN(check1)|| Number.isNaN(check2)){
+  return NaN
+}
   let playersDifference = winnerRating - looserRating;
   let biggerRateWinCalc = () => {
     if (playersDifference >= 0 && playersDifference <= 2) {
@@ -23,9 +28,7 @@ const calcRate = (winnerRating, looserRating) => {
     return winnerRating;
   };
 
-  if (isNaN(playersDifference) || winnerRating < 0 || looserRating < 0) {
-    return NaN;
-  }
+ 
   if (winnerRating === 0) {
     return (winnerRating = looserRating);
   }
@@ -42,9 +45,16 @@ const calcRate = (winnerRating, looserRating) => {
   winnerRating = Math.round(winnerRating * 10) / 10;
   return winnerRating;
 };
+const typeOfCheck = (player) => {
+  if (typeof player !== "number" || Number.isNaN(player) || player < 0) {
+    return NaN;
+  }
+};
+const theRateMessage = (x) => {
+  return `The winner rating is ${x}`;
+};
+const result = calcRate(22, "22");
+console.log(theRateMessage(result));
 
-const theRateMessage = (x)=>{
-return `The winner rating is ${x}`
-}
-const result = calcRate(22,22)
-console.log(theRateMessage(result))
+
+
